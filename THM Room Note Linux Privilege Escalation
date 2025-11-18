@@ -110,4 +110,18 @@ find / -perm -o w -type d 2>/dev/null: Find world-writeable folders
 The reason we see three different “find” commands that could potentially lead to the same result can be seen in the manual document. As you can see below, the perm parameter affects the way “find” works.
 
 General Linux Commands
-As we are in the Linux realm, familiarity with Linux commands, in general, will be very useful. Please spend some time getting comfortable with commands such as find, locate, grep, cut, sort, etc.
+As we are in the Linux realm, familiarity with Linux commands, in general, will be very useful. 
+Please spend some time getting comfortable with commands such as find, locate, grep, cut, sort, etc.
+
+Several tools can help you save time during the enumeration process. 
+These tools should only be used to save time knowing they may miss some privilege escalation vectors.
+Below is a list of popular Linux enumeration tools with links to their respective Github repositories.
+The target system’s environment will influence the tool you will be able to use.
+For example, you will not be able to run a tool written in Python if it is not installed on the target system. 
+This is why it would be better to be familiar with a few rather than having a single go-to tool.
+
+LinPeas: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
+LinEnum: https://github.com/rebootuser/LinEnum
+LES (Linux Exploit Suggester): https://github.com/mzet-/linux-exploit-suggester
+Linux Smart Enumeration: https://github.com/diego-treitos/linux-smart-enumeration
+Linux Priv Checker: https://github.com/linted/linuxprivchecker
