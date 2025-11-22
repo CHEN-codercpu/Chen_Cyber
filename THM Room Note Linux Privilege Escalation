@@ -128,3 +128,20 @@ Linux Priv Checker: https://github.com/linted/linuxprivchecker
 
 Kernel Version 3.13.0-24
 CVE-2015-1328
+
+Much of Linux privilege controls rely on controlling the users and files interactions. 
+This is done with permissions. By now, you know that files can have read, write, and execute permissions. 
+These are given to users within their privilege levels. This changes with SUID (Set-user Identification) and SGID (Set-group Identification). 
+These allow files to be executed with the permission level of the file owner or the group owner, respectively.
+
+You will notice these files have an “s” bit set showing their special permission level.
+
+find / -type f -perm -04000 -ls 2>/dev/null will list files that have SUID or SGID bits set.
+
+Another method system administrators can use to increase the privilege level of a process or binary is “Capabilities”. 
+Capabilities help manage privileges at a more granular level. For example, if the SOC analyst needs to use a tool that needs to initiate socket connections, a regular user would not be able to do that.
+If the system administrator does not want to give this user higher privileges, they can change the capabilities of the binary.
+As a result, the binary would get through its task without needing a higher privilege user.
+The capabilities man page provides detailed information on its usage and options.
+
+We can use the getcap tool to list enabled capabilities.
