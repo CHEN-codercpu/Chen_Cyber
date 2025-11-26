@@ -100,6 +100,9 @@ find / -atime 10: find files that were accessed in the last 10 day
 find / -cmin -60: find files changed within the last hour (60 minutes)
 find / -amin -60: find files accesses within the last hour (60 minutes)
 find / -size 50M: find files with a 50 MB size
+find / -group GROUPNAME 2>/dev/null
+find / -perm -o+w 2>/dev/null
+find / -type f -cmin -5 2>/dev/null
 This command can also be used with (+) and (-) signs to specify a file that is larger or smaller than the given size.
 
 folders and files that can be written to or executed from:
