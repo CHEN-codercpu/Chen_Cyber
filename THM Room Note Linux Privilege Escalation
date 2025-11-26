@@ -46,7 +46,13 @@ ls
 One of the common commands used in Linux is probably ls.
 
 While looking for potential privilege escalation vectors, please remember to always use the ls command with the -la parameter. 
-The example below shows how the “secret.txt” file can easily be missed using the ls or ls -l commands.
+The example below shows how the “secret.txt” file can easily be missed using the ls or ls -l or ls -al commands.
+
+To view the Change Timestamp (ctime) of the same file, we can run:
+ls -lc
+
+Lastly, to view the Access Timestamp (atime) of the file, we can run:
+ls -lu
 
 Id
 The id command will provide a general overview of the user’s privilege level and group memberships.
@@ -112,6 +118,12 @@ find / -perm -222 -type d 2>/dev/null: Find world-writeable folders
 find / -perm -o w -type d 2>/dev/null: Find world-writeable folders
 The reason we see three different “find” commands that could potentially lead to the same result can be seen in the manual document. As you can see below, the perm parameter affects the way “find” works.
 
+grep
+grep -v "" The -v option in the grep command negates the pattern, displaying files that do not have the ".jpeg" extension. 
+This allows us to identify and prioritise files with different extensions, such as PHP, that may require further investigation.
+
+stat
+
 General Linux Commands
 As we are in the Linux realm, familiarity with Linux commands, in general, will be very useful. 
 Please spend some time getting comfortable with commands such as find, locate, grep, cut, sort, etc.
@@ -148,3 +160,12 @@ As a result, the binary would get through its task without needing a higher priv
 The capabilities man page provides detailed information on its usage and options.
 
 We can use the getcap tool to list enabled capabilities.
+
+Analysing Checksums
+
+Checksums are unique values generated from data using cryptographic hash functions (such as MD5 or SHA-256). 
+These functions produce fixed-size strings of characters representing the data so that even a minor change in the data will result in a significantly different checksum.
+
+Checksums are often used for data integrity verification, ensuring that data has not been altered or corrupted. For an incident responder, they can also be used to identify malicious files and executables based on known signatures.
+
+We can leverage two useful checksum utilities to inspect the hashes of the reverse.elf file we identified previously. We can run both md5sum and sha256sum on the file to output its hash:
